@@ -1,85 +1,52 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo } from 'react';
 
-import { Col, Pagination, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Ratio, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-import CharacterCard from 'components/CharacterCard';
 import Footer from 'components/Footer';
 import MainBanner from 'components/MainBanner';
 
-import { CharacterType } from 'types/CharacterType';
-
-import { HomeBg, MainContainer } from './styled';
+import characters from '../../assets/characters.jpg';
+import episodes from '../../assets/episodes.png';
+import locations from '../../assets/locations.jpg';
+import { CardT, HomeBg, MainSection } from './styled';
 
 const Home: React.FC = () => {
-  const [characters, setCharacters] = useState<CharacterType[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [pgs, setPgs] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const fetchCharacters = useCallback(async (page: number) => {
-    setIsLoading(true);
-    const { results, info } = await fetch(
-      `https://rickandmortyapi.com/api/character?page=${page}`,
-    ).then((response) => response.json());
-    setIsLoading(false);
-    setCharacters(results);
-    setPgs(info.pages);
-    setCurrentPage(page);
-  }, []);
-
-  useEffect(() => {
-    fetchCharacters(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handlePageChange = useCallback(
-    (page: number) => {
-      fetchCharacters(page);
-    },
-    [fetchCharacters],
-  );
-
   return (
-    <>
-      <MainBanner />
-      <HomeBg className="d-flex justify-content-center">
-        {isLoading && (
-          <div className="d-flex aling-items-center justify-content-center my-5">
-            <Spinner animation="grow" variant="primary" />
-          </div>
-        )}
-
-        {!isLoading && (
-          <MainContainer className="  my-5 ">
-            <Row xs={1} md={2} className=" w-100 g-3 mx-0">
-              {characters.map((character) => (
-                <Col key={character.id} className="d-flex">
-                  <CharacterCard character={character} />
-                </Col>
-              ))}
-            </Row>
-            {pgs > 1 && (
-              <Pagination className=" flex-wrap justify-content-center my-3">
-                {Array(pgs)
-                  .fill(null)
-                  .map((pageItem, index) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <Pagination.Item
-                      // eslint-disable-next-line react/no-array-index-key
-                      key={index}
-                      active={currentPage === index + 1}
-                      onClick={() => handlePageChange(index + 1)}
-                    >
-                      {index + 1}
-                    </Pagination.Item>
-                  ))}
-              </Pagination>
-            )}
-          </MainContainer>
-        )}
-      </HomeBg>
-      <Footer />
-    </>
+    <HomeBg>
+      <MainSection>
+        <MainBanner />
+        <Container className="mt-auto mb-auto">
+          <Row className="g-5">
+            <Col className="d-flex">
+              <Link to="/characters" className="w-100">
+                <CardT>Characters: 826</CardT>
+                <Ratio aspectRatio="16x9">
+                  <img src={characters} alt="Characters" />
+                </Ratio>
+              </Link>
+            </Col>
+            <Col className="d-flex">
+              <Link to="/episodes" className="w-100">
+                <CardT>Episodes: 51</CardT>
+                <Ratio aspectRatio="16x9">
+                  <img src={episodes} alt="Episodes" />
+                </Ratio>
+              </Link>
+            </Col>
+            <Col className="d-flex">
+              <Link to="/locations" className="w-100">
+                <CardT>Locations: 126</CardT>
+                <Ratio aspectRatio="16x9">
+                  <img src={locations} alt="Locations" />
+                </Ratio>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
+        <Footer />
+      </MainSection>
+    </HomeBg>
   );
 };
 

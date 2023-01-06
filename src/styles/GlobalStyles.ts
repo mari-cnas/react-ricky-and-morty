@@ -8,8 +8,23 @@ export default createGlobalStyle`
  
 }
 
-
-
-//bootstrap overrides
+html,body,#root{
+    min-height: 100vh;
+}
+/* 
+body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    flex: 1 0 auto;
+}
+footer {
+    margin-top: auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+} */
 
 `;

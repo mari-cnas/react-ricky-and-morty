@@ -13,16 +13,16 @@ export const FooterBg = styled.section`
 
   /* visited link */
   a:visited {
-    color: #333;
+    color: white;
   }
 
   /* mouse over link */
   a:hover {
-    color: grey;
+    color: black;
   }
 
   /* selected link */
   a:active {
-    color: #0000ff;
+    color: black;
   }
 `;

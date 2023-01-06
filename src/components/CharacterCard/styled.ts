@@ -1,13 +1,18 @@
-import { Card, Ratio, Row } from 'react-bootstrap';
+import { Card, Ratio } from 'react-bootstrap';
 import styled from 'styled-components';
 
 interface ICoverProps {
   coverImage: string;
+  aspectRatio: string;
+}
+
+interface IVerifyProps {
+  status: string;
 }
 
 export const ColoredCard = styled.div`
   background-color: #add8e6;
-  border-radius: 3px;
+  border-radius: 10px;
   display: flex;
 
   /* unvisited link */
@@ -18,17 +23,17 @@ export const ColoredCard = styled.div`
 
   /* visited link */
   a:visited {
-    color: white;
+    color: orange;
   }
 
   /* mouse over link */
   a:hover {
-    color: purple;
+    color: white;
   }
 
   /* selected link */
   a:active {
-    color: blue;
+    color: white;
   }
 `;
 
@@ -37,16 +42,16 @@ export const CharacterName = styled(Card.Title)`
   text-shadow: black 0.1em 0.1em 0.2em;
 `;
 
-export const CharacterImage = styled.div<ICoverProps>`
+export const CharacterImage = styled(Ratio)<ICoverProps>`
   background-image: ${({ coverImage }) => `url(${coverImage})`};
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  margin-left: 0px;
-  height: 200px;
+  border-radius: 10px 0px 0px 10px;
+`;
+export const CharacterBox = styled.div`
   @media (min-width: 600px) {
     width: 40%;
-    height: auto;
   }
 `;
 
@@ -54,4 +59,22 @@ export const CharacterText = styled.div`
   @media (min-width: 600px) {
     width: 60%;
   }
+`;
+
+export const Verify = styled.p<IVerifyProps>`
+  height: 0.5rem;
+  width: 0.5rem;
+  margin-right: 0.375rem;
+  background: ${({ status }) => {
+    switch (status) {
+      case 'Alive':
+        return '#55cc44';
+      case 'Dead':
+        return '#d63d2e';
+      default:
+        return '#9e9e9e';
+    }
+  }};
+  border-radius: 50%;
+  margin-top: 8px;
 `;

@@ -5,6 +5,9 @@ import { Col, Pagination, Row, Spinner } from 'react-bootstrap';
 import EpisodeCard from 'components/EpisodeCard';
 import Footer from 'components/Footer';
 import MainBanner from 'components/MainBanner';
+import MainTitle from 'components/MainTitle';
+
+import useTitle from 'hooks/useTitle';
 
 import { EpisodeType } from 'types/EpisodeType';
 
@@ -15,6 +18,12 @@ const Episodes: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [pgs, setPgs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const setTitle = useTitle();
+
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    setTitle('Episodes');
+  }, [setTitle]);
 
   const fetchEpisodes = useCallback(async (page: number) => {
     setIsLoading(true);
@@ -52,6 +61,7 @@ const Episodes: React.FC = () => {
 
           {!isLoading && (
             <div className="d-flex flex-column w-100">
+              <MainTitle title="Episodes" />
               <Row xs={1} md={3} className=" g-3 justify-content-center">
                 {episodes.map((episode) => (
                   <Col key={episode.id} className="d-flex">

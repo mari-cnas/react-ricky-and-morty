@@ -6,14 +6,29 @@ import { useParams } from 'react-router-dom';
 import Footer from 'components/Footer';
 import MainBanner from 'components/MainBanner';
 
+import useCapitalize from 'hooks/useCapitalize';
+import useTitle from 'hooks/useTitle';
+
 import { CharacterType } from 'types/CharacterType';
 
-import { Background, CharacterContainer, CharacterName } from './styled';
+import {
+  Background,
+  CharacterContainer,
+  CharacterName,
+  Verify,
+} from './styled';
 
 const Character: React.FC = () => {
   const { id } = useParams();
   const [character, setCharacter] = useState<CharacterType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const setTitle = useTitle();
+  const setCapitalize = useCapitalize();
+
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    setCapitalize(character?.status);
+  }, [setCapitalize, character?.status]);
 
   const fetchCharacter = useCallback(async () => {
     setIsLoading(true);
@@ -30,6 +45,11 @@ const Character: React.FC = () => {
     fetchCharacter();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    setTitle(`${character?.name} | Character`);
+  }, [character?.name, setTitle]);
 
   return (
     <>
@@ -53,7 +73,8 @@ const Character: React.FC = () => {
               </Col>
               <Col>
                 <ListGroup>
-                  <ListGroup.Item>
+                  <ListGroup.Item className="d-flex">
+                    <Verify status={character.status} />
                     {character.status} - {character.species}
                   </ListGroup.Item>
                   <ListGroup.Item>Type: {character.type}</ListGroup.Item>
@@ -67,7 +88,9 @@ const Character: React.FC = () => {
                   <ListGroup.Item>
                     <p>Episodes:</p>
                     {character.episode.map((episode) => (
-                      <li>{episode}</li>
+                      <li>
+                        <a href={episode}>{episode}</a>
+                      </li>
                     ))}
                   </ListGroup.Item>
                 </ListGroup>

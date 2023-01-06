@@ -5,6 +5,9 @@ import { Col, Pagination, Row, Spinner } from 'react-bootstrap';
 import Footer from 'components/Footer';
 import LocationCard from 'components/Location Card';
 import MainBanner from 'components/MainBanner';
+import MainTitle from 'components/MainTitle';
+
+import useTitle from 'hooks/useTitle';
 
 import { LocationType } from 'types/Locationstype';
 
@@ -15,6 +18,12 @@ const Locations: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [pgs, setPgs] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const setTitle = useTitle();
+
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    setTitle('Locations');
+  }, [setTitle]);
 
   const fetchLocations = useCallback(async (page: number) => {
     setIsLoading(true);
@@ -52,6 +61,7 @@ const Locations: React.FC = () => {
 
           {!isLoading && (
             <div className="d-flex flex-column w-100">
+              <MainTitle title="Locations" />
               <Row xs={1} md={3} className=" g-3 justify-content-center">
                 {locations.map((location) => (
                   <Col key={location.id} className="d-flex">
