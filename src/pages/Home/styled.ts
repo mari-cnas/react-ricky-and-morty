@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const HomeBg = styled.div`
-  background-color: rgb(32, 35, 41);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`;
-
 export const MainSection = styled.div`
   display: flex;
   flex-direction: column;

@@ -6,18 +6,20 @@ import { Link } from 'react-router-dom';
 import Footer from 'components/Footer';
 import MainBanner from 'components/MainBanner';
 
+import { Wrapper } from 'styles/GlobalStyles';
+
 import characters from '../../assets/characters.jpg';
 import episodes from '../../assets/episodes.png';
 import locations from '../../assets/locations.jpg';
-import { CardT, HomeBg, MainSection } from './styled';
+import { CardT, MainSection } from './styled';
 
 const Home: React.FC = () => {
   return (
-    <HomeBg>
+    <Wrapper>
       <MainSection>
         <MainBanner />
         <Container className="mt-auto mb-auto">
-          <Row className="g-5 row-cols-1 row-cols-md-3">
+          <Row className="g-5 row-cols-1 row-cols-md-3 mt-2 mb-5">
             <Col className="d-flex">
               <Link to="/characters" className="w-100">
                 <CardT>Characters: 826</CardT>
@@ -46,7 +48,7 @@ const Home: React.FC = () => {
         </Container>
         <Footer />
       </MainSection>
-    </HomeBg>
+    </Wrapper>
   );
 };
 
