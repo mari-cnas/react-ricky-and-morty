@@ -10,7 +10,7 @@ interface IBaseComponentProps {
   title: string;
 }
 
-const MainTitle: React.FC<IBaseComponentProps> = ({ title, children }) => {
+const MainTitle: React.FC<IBaseComponentProps> = ({ title }) => {
   return (
     <div className="d-flex align-items-center pb-3">
       <Link to="/">

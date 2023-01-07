@@ -51,14 +51,15 @@ const Characters: React.FC = () => {
   return (
     <Wrapper>
       <MainBanner />
-      {isLoading && (
-        <div className="d-flex mt-auto mb-auto">
-          <Spinner animation="grow" variant="primary" />
-        </div>
-      )}
 
-      {!isLoading && (
-        <div className="d-flex justify-content-center flex-grow-1">
+      <div className="d-flex justify-content-center align-items-center flex-grow-1">
+        {isLoading && (
+          <div className="d-flex mt-auto mb-auto">
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        )}
+
+        {!isLoading && (
           <Container className="mt-4   ">
             <MainTitle title="Characters" />
             <Row xs={1} lg={2} className=" w-100 g-3 mx-0">
@@ -79,8 +80,9 @@ const Characters: React.FC = () => {
               />
             )}
           </Container>
-        </div>
-      )}
+        )}
+      </div>
+
       <Footer />
     </Wrapper>
   );

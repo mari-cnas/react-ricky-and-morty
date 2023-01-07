@@ -51,14 +51,15 @@ const Episodes: React.FC = () => {
   return (
     <Wrapper>
       <MainBanner />
-      {isLoading && (
-        <div className="d-flex mt-auto mb-auto">
-          <Spinner animation="grow" variant="primary" />
-        </div>
-      )}
 
-      {!isLoading && (
-        <div className="d-flex justify-content-center flex-grow-1">
+      <div className="d-flex justify-content-center flex-grow-1">
+        {isLoading && (
+          <div className="d-flex mt-auto mb-auto">
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        )}
+
+        {!isLoading && (
           <Container className="mx-5 mt-5">
             <div className="d-flex flex-column w-100">
               <MainTitle title="Episodes" />
@@ -81,8 +82,9 @@ const Episodes: React.FC = () => {
               )}
             </div>
           </Container>
-        </div>
-      )}
+        )}
+      </div>
+
       <Footer />
     </Wrapper>
   );

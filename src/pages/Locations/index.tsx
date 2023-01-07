@@ -51,15 +51,15 @@ const Locations: React.FC = () => {
   return (
     <Wrapper>
       <MainBanner />
-      <div className="d-flex justify-content-center flex-grow-1">
-        <Container className="mx-5 mt-5">
-          {isLoading && (
-            <div className="d-flex mt-auto mb-auto">
-              <Spinner animation="grow" variant="primary" />
-            </div>
-          )}
+      <div className="d-flex justify-content-center align-items-center flex-grow-1">
+        {isLoading && (
+          <div className="d-flex mt-auto mb-auto">
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        )}
 
-          {!isLoading && (
+        {!isLoading && (
+          <Container className="mx-5 mt-5">
             <div className="d-flex flex-column w-100">
               <MainTitle title="Locations" />
               <Row xs={1} md={3} className=" g-3 justify-content-center">
@@ -80,8 +80,8 @@ const Locations: React.FC = () => {
                 />
               )}
             </div>
-          )}
-        </Container>
+          </Container>
+        )}
       </div>
       <Footer />
     </Wrapper>
