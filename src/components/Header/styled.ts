@@ -77,7 +77,6 @@ export const NavDiv = styled.div`
 
 export const MenuMobile = styled.div<IMenuProps>`
   background-color: #add8e6;
-  color: black;
   height: 100rem;
   top: 0;
   left: ${(props) => (props.isMenuOpened ? 0 : -75)}%;
@@ -89,6 +88,11 @@ export const MenuMobile = styled.div<IMenuProps>`
   > svg {
     position: absolute;
     top: 1rem;
+  }
+
+  a,
+  a:visited {
+    color: black;
   }
 `;
 export const MenuOverlay = styled.div<IMenuProps>`

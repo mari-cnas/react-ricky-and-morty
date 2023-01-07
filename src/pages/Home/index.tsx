@@ -17,7 +17,7 @@ const Home: React.FC = () => {
       <MainSection>
         <MainBanner />
         <Container className="mt-auto mb-auto">
-          <Row className="g-5">
+          <Row className="g-5 row-cols-1 row-cols-md-3">
             <Col className="d-flex">
               <Link to="/characters" className="w-100">
                 <CardT>Characters: 826</CardT>

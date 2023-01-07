@@ -15,9 +15,11 @@ interface IMainBannerProps {
 const MainBanner: React.FC<IMainBannerProps> = () => {
   return (
     <MainBannerBg>
-      <Container>
+      <Container className="d-flex flex-column flex-grow-1">
         <Header />
-        <Title className="text-center mt-5">The Rick and Morty API</Title>
+        <Title className="text-center mt-auto mb-auto">
+          The Rick and Morty API
+        </Title>
       </Container>
     </MainBannerBg>
   );

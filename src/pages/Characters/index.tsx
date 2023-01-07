@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 
 import CharacterCard from 'components/CharacterCard';
 import Footer from 'components/Footer';
@@ -9,9 +9,9 @@ import MainTitle from 'components/MainTitle';
 
 import useTitle from 'hooks/useTitle';
 
-import { CharacterType } from 'types/CharacterType';
+import { Paginate, Wrapper } from 'styles/GlobalStyles';
 
-import { CharactersPaginate, HomeBg, MainContainer } from './styled';
+import { CharacterType } from 'types/CharacterType';
 
 const Characters: React.FC = () => {
   const [characters, setCharacters] = useState<CharacterType[]>([]);
@@ -49,19 +49,19 @@ const Characters: React.FC = () => {
   );
 
   return (
-    <>
+    <Wrapper>
       <MainBanner />
-      <HomeBg className="d-flex justify-content-center">
-        {isLoading && (
-          <div className="d-flex aling-items-center justify-content-center my-5">
-            <Spinner animation="grow" variant="primary" />
-          </div>
-        )}
+      {isLoading && (
+        <div className="d-flex mt-auto mb-auto">
+          <Spinner animation="grow" variant="primary" />
+        </div>
+      )}
 
-        {!isLoading && (
-          <MainContainer className="mt-4   ">
+      {!isLoading && (
+        <div className="d-flex justify-content-center flex-grow-1">
+          <Container className="mt-4   ">
             <MainTitle title="Characters" />
-            <Row xs={1} md={2} className=" w-100 g-3 mx-0">
+            <Row xs={1} lg={2} className=" w-100 g-3 mx-0">
               {characters.map((character) => (
                 <Col key={character.id} className="d-flex">
                   <CharacterCard character={character} />
@@ -69,7 +69,7 @@ const Characters: React.FC = () => {
               ))}
             </Row>
             {pgs > 1 && (
-              <CharactersPaginate
+              <Paginate
                 forcePage={currentPage - 1}
                 onPageChange={(p) => handlePageChange(p.selected + 1)}
                 pageCount={pgs}
@@ -78,11 +78,11 @@ const Characters: React.FC = () => {
                 className="my-5 list-unstyled flex-wrap"
               />
             )}
-          </MainContainer>
-        )}
-      </HomeBg>
+          </Container>
+        </div>
+      )}
       <Footer />
-    </>
+    </Wrapper>
   );
 };
 

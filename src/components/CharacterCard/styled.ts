@@ -35,10 +35,14 @@ export const ColoredCard = styled.div`
   a:active {
     color: white;
   }
+
+  p {
+    margin-bottom: 5px;
+  }
 `;
 
 export const CharacterName = styled(Card.Title)`
-  font-size: 2em;
+  font-size: 1.7em;
   text-shadow: black 0.1em 0.1em 0.2em;
 `;
 
@@ -48,6 +52,10 @@ export const CharacterImage = styled(Ratio)<ICoverProps>`
   background-position: center center;
   background-repeat: no-repeat;
   border-radius: 10px 0px 0px 10px;
+
+  @media (max-width: 576px) {
+    border-radius: 10px 10px 0px 0px;
+  }
 `;
 export const CharacterBox = styled.div`
   @media (min-width: 600px) {

@@ -4,6 +4,7 @@ export const FooterBg = styled.section`
   background-color: grey;
   display: flex;
   color: white;
+  margin-top: auto;
 
   /* unvisited link */
   a:link {

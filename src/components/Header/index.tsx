@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 
-import { AiOutlineShoppingCart, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { Link } from 'react-router-dom';
 
@@ -27,13 +27,14 @@ const Header: React.FC<IHeaderProps> = () => {
             type="button"
             onClick={() => setIsMenuOpened(true)}
             size={18}
-            style={{ color: '#add8e6' }}
+            style={{ color: 'white' }}
           />
         </div>
       </div>
       <MenuMobile
         isMenuOpened={isMenuOpened}
         className="d-flex flex-column d-md-none position-fixed "
+        style={{ color: 'black' }}
       >
         <NavDiv className="container w-100">
           <div className=" d-flex flex-column justify-content-center mb-3">

@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import { Col, Pagination, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 
 import EpisodeCard from 'components/EpisodeCard';
 import Footer from 'components/Footer';
@@ -9,9 +9,9 @@ import MainTitle from 'components/MainTitle';
 
 import useTitle from 'hooks/useTitle';
 
-import { EpisodeType } from 'types/EpisodeType';
+import { Paginate, Wrapper } from 'styles/GlobalStyles';
 
-import { HomeBg, MainContainer } from './styled';
+import { EpisodeType } from 'types/EpisodeType';
 
 const Episodes: React.FC = () => {
   const [episodes, setEpisodes] = useState<EpisodeType[]>([]);
@@ -49,17 +49,17 @@ const Episodes: React.FC = () => {
   );
 
   return (
-    <>
+    <Wrapper>
       <MainBanner />
-      <HomeBg className="d-flex justify-content-center">
-        <MainContainer className="mx-5 my-5">
-          {isLoading && (
-            <div className="text-center">
-              <Spinner animation="grow" variant="primary" />
-            </div>
-          )}
+      {isLoading && (
+        <div className="d-flex mt-auto mb-auto">
+          <Spinner animation="grow" variant="primary" />
+        </div>
+      )}
 
-          {!isLoading && (
+      {!isLoading && (
+        <div className="d-flex justify-content-center flex-grow-1">
+          <Container className="mx-5 mt-5">
             <div className="d-flex flex-column w-100">
               <MainTitle title="Episodes" />
               <Row xs={1} md={3} className=" g-3 justify-content-center">
@@ -70,28 +70,21 @@ const Episodes: React.FC = () => {
                 ))}
               </Row>
               {pgs > 1 && (
-                <Pagination className=" flex-wrap justify-content-center my-3">
-                  {Array(pgs)
-                    .fill(null)
-                    .map((pageItem, index) => (
-                      // eslint-disable-next-line react/no-array-index-key
-                      <Pagination.Item
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={index}
-                        active={currentPage === index + 1}
-                        onClick={() => handlePageChange(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                </Pagination>
+                <Paginate
+                  forcePage={currentPage - 1}
+                  onPageChange={(p) => handlePageChange(p.selected + 1)}
+                  pageCount={pgs}
+                  previousLabel="<<"
+                  nextLabel=">>"
+                  className="my-5 list-unstyled flex-wrap"
+                />
               )}
             </div>
-          )}
-        </MainContainer>
-      </HomeBg>
+          </Container>
+        </div>
+      )}
       <Footer />
-    </>
+    </Wrapper>
   );
 };
 

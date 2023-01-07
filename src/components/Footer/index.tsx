@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
   return (
     <FooterBg>
       <Container>
-        <footer className="d-flex flex-wrap justify-content-between align-items-center  my-3 ">
+        <footer className="d-flex flex-column flex-md-row justify-content-between align-items-center  my-3 ">
           <div className="col-md-4 d-flex align-items-center">
             <span>
               &copy; ❮❯ by{' '}

@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
+import ReactPaginate from 'react-paginate';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 * {
@@ -11,20 +12,33 @@ export default createGlobalStyle`
 html,body,#root{
     min-height: 100vh;
 }
-/* 
-body {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin: 0;
-    flex: 1 0 auto;
-}
-footer {
-    margin-top: auto;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-} */
 
+
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: rgb(32, 35, 41);
+`;
+
+export const Paginate = styled(ReactPaginate)`
+  display: flex;
+  justify-content: center;
+  & > li {
+    border: 1px solid black;
+    background-color: orange;
+    color: black;
+  }
+  a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  & > li.selected > a {
+    background-color: #00ff00;
+    color: black;
+  }
 `;

@@ -10,11 +10,6 @@ export const CharacterContainer = styled(Container)`
   display: flex;
 `;
 
-export const Background = styled.div`
-  background-color: rgb(32, 35, 41);
-  display: flex;
-`;
-
 export const CharacterName = styled.h1`
   text-shadow: black 0.1em 0.1em 0.2em;
   color: white;

@@ -1,7 +1,8 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
 import { Col, ListGroup, Row, Spinner } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { IoArrowUndoCircle } from 'react-icons/io5';
+import { Link, useParams } from 'react-router-dom';
 
 import Footer from 'components/Footer';
 import MainBanner from 'components/MainBanner';
@@ -9,14 +10,11 @@ import MainBanner from 'components/MainBanner';
 import useCapitalize from 'hooks/useCapitalize';
 import useTitle from 'hooks/useTitle';
 
+import { Wrapper } from 'styles/GlobalStyles';
+
 import { CharacterType } from 'types/CharacterType';
 
-import {
-  Background,
-  CharacterContainer,
-  CharacterName,
-  Verify,
-} from './styled';
+import { CharacterContainer, CharacterName, Verify } from './styled';
 
 const Character: React.FC = () => {
   const { id } = useParams();
@@ -52,17 +50,27 @@ const Character: React.FC = () => {
   }, [character?.name, setTitle]);
 
   return (
-    <>
+    <Wrapper>
       <MainBanner />
-      <Background className="d-flex flex-column align-items-center">
-        <CharacterContainer className=" py-3 flex-column align-items-center">
-          <CharacterName>{character?.name ?? 'Loading...'}</CharacterName>
-          {isLoading && (
-            <div className="text-center">
-              <Spinner animation="grow" variant="primary" />
+      <div className="d-flex flex-column align-items-center flex-grow-1">
+        {isLoading && (
+          <div className="d-flex mt-auto mb-auto">
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        )}
+        {!isLoading && character && (
+          <CharacterContainer className=" py-3 flex-column align-items-center">
+            <div className="d-flex align-items-center">
+              <Link to="/characters">
+                <IoArrowUndoCircle
+                  className="me-3 "
+                  size={30}
+                  style={{ color: '#87f' }}
+                />
+              </Link>
+              <CharacterName>{character?.name ?? 'Loading...'}</CharacterName>
             </div>
-          )}
-          {!isLoading && character && (
+
             <Row className="flex-column align-items-center justify-content-between">
               <Col>
                 <img
@@ -75,9 +83,13 @@ const Character: React.FC = () => {
                 <ListGroup>
                   <ListGroup.Item className="d-flex">
                     <Verify status={character.status} />
-                    {character.status} - {character.species}
+                    {character.status.charAt(0).toUpperCase() +
+                      character.status.slice(1)}{' '}
+                    - {character.species}
                   </ListGroup.Item>
-                  <ListGroup.Item>Type: {character.type}</ListGroup.Item>
+                  {character.type && (
+                    <ListGroup.Item>Type: {character.type}</ListGroup.Item>
+                  )}
                   <ListGroup.Item>Gender: {character.gender}</ListGroup.Item>
                   <ListGroup.Item>
                     Last known location: {character.location.name}
@@ -86,21 +98,16 @@ const Character: React.FC = () => {
                     Origin: {character.origin.name}
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <p>Episodes:</p>
-                    {character.episode.map((episode) => (
-                      <li>
-                        <a href={episode}>{episode}</a>
-                      </li>
-                    ))}
+                    Episodes: {character.episode.length}
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
             </Row>
-          )}
-        </CharacterContainer>
-      </Background>
+          </CharacterContainer>
+        )}
+      </div>
       <Footer />
-    </>
+    </Wrapper>
   );
 };
 

@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 
-import { Col, Pagination, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 
 import Footer from 'components/Footer';
 import LocationCard from 'components/Location Card';
@@ -9,9 +9,9 @@ import MainTitle from 'components/MainTitle';
 
 import useTitle from 'hooks/useTitle';
 
-import { LocationType } from 'types/Locationstype';
+import { Paginate, Wrapper } from 'styles/GlobalStyles';
 
-import { LocationsBg, MainContainer } from './styled';
+import { LocationType } from 'types/Locationstype';
 
 const Locations: React.FC = () => {
   const [locations, setLocations] = useState<LocationType[]>([]);
@@ -49,12 +49,12 @@ const Locations: React.FC = () => {
   );
 
   return (
-    <>
+    <Wrapper>
       <MainBanner />
-      <LocationsBg className="d-flex justify-content-center">
-        <MainContainer className="mx-5 my-5">
+      <div className="d-flex justify-content-center flex-grow-1">
+        <Container className="mx-5 mt-5">
           {isLoading && (
-            <div className="text-center">
+            <div className="d-flex mt-auto mb-auto">
               <Spinner animation="grow" variant="primary" />
             </div>
           )}
@@ -70,28 +70,21 @@ const Locations: React.FC = () => {
                 ))}
               </Row>
               {pgs > 1 && (
-                <Pagination className=" flex-wrap justify-content-center my-3">
-                  {Array(pgs)
-                    .fill(null)
-                    .map((pageItem, index) => (
-                      // eslint-disable-next-line react/no-array-index-key
-                      <Pagination.Item
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={index}
-                        active={currentPage === index + 1}
-                        onClick={() => handlePageChange(index + 1)}
-                      >
-                        {index + 1}
-                      </Pagination.Item>
-                    ))}
-                </Pagination>
+                <Paginate
+                  forcePage={currentPage - 1}
+                  onPageChange={(p) => handlePageChange(p.selected + 1)}
+                  pageCount={pgs}
+                  previousLabel="<<"
+                  nextLabel=">>"
+                  className="my-5 list-unstyled flex-wrap"
+                />
               )}
             </div>
           )}
-        </MainContainer>
-      </LocationsBg>
+        </Container>
+      </div>
       <Footer />
-    </>
+    </Wrapper>
   );
 };
 

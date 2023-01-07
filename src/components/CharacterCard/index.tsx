@@ -41,7 +41,7 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
         </Link>
       </CharacterBox>
       <CharacterText className="py-3 ">
-        <CharacterName className="px-3 pb-4">
+        <CharacterName className="px-3 mb-2">
           <Link
             className="w-100"
             to={`/characters/${character.id}/${strToSlug(character.name)}`}
@@ -49,20 +49,27 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
             {character.name}
           </Link>
         </CharacterName>
-        <Card.Text className="px-3 fw-bold">
+        <Card.Text className="px-3 fw-bold mb-3">
           <div className="d-flex">
             <Verify status={character.status} />
-            {setCapitalize(character.status)} - {character.species}
+            {character.status.charAt(0).toUpperCase() +
+              character.status.slice(1)}{' '}
+            - {character.species}
           </div>
         </Card.Text>
         <Card.Text className="px-3">
-          Last known location: {character.location.name}
+          <div className="d-flex flex-column">
+            <p className="text-muted ">Last known location:</p>
+            <p>{character.location.name}</p>
+          </div>
         </Card.Text>
         <Card.Text className="px-3">
-          Origin:{' '}
-          <a href={character.origin.url} className="text-dark">
-            {character.origin.name}
-          </a>
+          <div className="d-flex flex-column">
+            <p className="text-muted ">Origin:</p>
+            <a href={character.origin.url} className="text-dark">
+              {character.origin.name}
+            </a>
+          </div>
         </Card.Text>
       </CharacterText>
     </ColoredCard>
