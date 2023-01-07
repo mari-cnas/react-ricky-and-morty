@@ -22,7 +22,7 @@ const Characters: React.FC = () => {
 
   useEffect(() => {
     // window.scrollTo(0, 0);
-    setTitle('');
+    setTitle('Characters');
   }, [setTitle]);
 
   const fetchCharacters = useCallback(async (page: number) => {
