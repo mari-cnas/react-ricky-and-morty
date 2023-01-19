@@ -1,10 +1,12 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 
 import { Col, Container, Ratio, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import Footer from 'components/Footer';
 import MainBanner from 'components/MainBanner';
+
+import useTitle from 'hooks/useTitle';
 
 import { Wrapper } from 'styles/GlobalStyles';
 
@@ -14,6 +16,13 @@ import locations from '../../assets/locations.jpg';
 import { CardT, MainSection } from './styled';
 
 const Home: React.FC = () => {
+  const setTitle = useTitle();
+
+  useEffect(() => {
+    // window.scrollTo(0, 0);
+    setTitle('');
+  }, [setTitle]);
+
   return (
     <Wrapper>
       <MainSection>
