@@ -62,7 +62,7 @@ const Locations: React.FC = () => {
           <Container className="mx-5 mt-5">
             <div className="d-flex flex-column w-100">
               <MainTitle title="Locations" />
-              <Row xs={1} md={2} className=" g-3 justify-content-center">
+              <Row xs={1} md={2} lg={3} className=" g-3 justify-content-center">
                 {locations.map((location) => (
                   <Col key={location.id} className="d-flex">
                     <LocationCard location={location} />
