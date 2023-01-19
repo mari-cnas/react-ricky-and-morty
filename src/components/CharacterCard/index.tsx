@@ -67,7 +67,8 @@ const CharacterCard: React.FC<ICharacterCardProps> = ({ character }) => {
           <div className="d-flex flex-column">
             <p className="text-muted ">Origin:</p>
             <a href={character.origin.url} className="text-dark">
-              {character.origin.name}
+              {character.origin.name.charAt(0).toUpperCase() +
+                character.origin.name.slice(1)}
             </a>
           </div>
         </Card.Text>

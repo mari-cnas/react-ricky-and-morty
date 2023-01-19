@@ -28,7 +28,7 @@ export const Paginate = styled(ReactPaginate)`
   justify-content: center;
   & > li {
     border: 1px solid black;
-    background-color: orange;
+    background-color: grey;
     color: black;
   }
   a {
@@ -38,7 +38,7 @@ export const Paginate = styled(ReactPaginate)`
     text-decoration: none;
   }
   & > li.selected > a {
-    background-color: #00ff00;
+    background-color: orange;
     color: black;
   }
 `;

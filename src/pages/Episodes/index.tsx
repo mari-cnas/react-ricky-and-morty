@@ -63,7 +63,7 @@ const Episodes: React.FC = () => {
           <Container className="mx-5 mt-5">
             <div className="d-flex flex-column w-100">
               <MainTitle title="Episodes" />
-              <Row xs={1} md={3} className=" g-3 justify-content-center">
+              <Row xs={1} md={2} className=" g-3 justify-content-center">
                 {episodes.map((episode) => (
                   <Col key={episode.id} className="d-flex">
                     <EpisodeCard episode={episode} />
