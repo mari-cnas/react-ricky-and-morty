@@ -1,10 +1,7 @@
+import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 
-export const MainSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
+export const HomeContainer = styled(Container)`
   /* unvisited link */
   a:link {
     color: white;
