@@ -26,9 +26,9 @@ const Home: React.FC = () => {
   return (
     <Wrapper>
       <MainBanner />
-      <HomeContainer className="mt-auto mb-auto">
-        <Row className="g-5 row-cols-1 row-cols-md-3 mt-2 mb-5">
-          <Col className="d-flex">
+      <HomeContainer className="mt-auto ">
+        <Row className=" row-cols-1 row-cols-md-3 mt-2 mb-5">
+          <Col className="d-flex mt-5">
             <Link to="/characters" className="w-100">
               <CardT>Characters: 826</CardT>
               <Ratio aspectRatio="16x9">
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
               </Ratio>
             </Link>
           </Col>
-          <Col className="d-flex">
+          <Col className="d-flex mt-5">
             <Link to="/episodes" className="w-100">
               <CardT>Episodes: 51</CardT>
               <Ratio aspectRatio="16x9">
@@ -44,7 +44,7 @@ const Home: React.FC = () => {
               </Ratio>
             </Link>
           </Col>
-          <Col className="d-flex">
+          <Col className="d-flex my-5">
             <Link to="/locations" className="w-100">
               <CardT>Locations: 126</CardT>
               <Ratio aspectRatio="16x9">
